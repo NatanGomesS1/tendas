@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>Tendas Real - Estruturas para Eventos | Aluguel de Tendas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8faff;
+            color: #1e2a3a;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+            font-family: 'Montserrat', 'Poppins', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+
+        :root {
+            --primary-blue: #1976d2;
+            --primary-blue-dark: #0d47a1;
+            --primary-blue-light: #64b5f6;
+            --highlight-color: #f5b042;
+            --highlight-dark: #e09d2e;
+            --white: #ffffff;
+            --gray-soft: #edf2f7;
+            --whatsapp-green: #25D366;
+            --header-height: 80px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            width: 100%;
+        }
+
+        img, iframe {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* === HEADER (desktop) === */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 25px rgba(25, 118, 210, 0.15);
+            z-index: 1000;
+            border-bottom: 3px solid var(--primary-blue);
+            transition: all 0.2s;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 14px 0;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .logo a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--primary-blue-dark);
+            letter-spacing: -0.5px;
+            line-height: 1.2;
+            transition: color 0.2s;
+        }
+
+        .logo a:hover h1 {
+            color: var(--primary-blue);
+        }
+
+        .logo span {
+            font-size: 0.7rem;
+            color: var(--primary-blue);
+            display: block;
+            font-weight: 600;
+            letter-spacing: 1.5px;
+        }
+
+        nav {
+            position: relative;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            transition: all 0.3s ease;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #1e2a3a;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-blue);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary-blue);
+        }
+
+        .menu-toggle {
+            display: none;
+            font-size: 1.8rem;
+            background: none;
+            border: none;
+            color: var(--primary-blue-dark);
+            cursor: pointer;
+            transition: 0.2s;
+            width: 44px;
+            height: 44px;
+            border-radius: 8px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .menu-toggle:hover {
+            background: rgba(25, 118, 210, 0.1);
+        }
+
+        /* === HERO === */
+        .hero {
+            height: 90vh;
+            min-height: 550px;
+            position: relative;
+            background: linear-gradient(90deg, rgba(8, 45, 110, 0.96) 0%, rgba(25, 118, 210, 0.82) 55%, rgba(100, 181, 246, 0.65) 100%), url('tendas_eventos_campos_dos_goytacazes.jpg') center/cover no-repeat;
+            background-attachment: scroll;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            text-align: left;
+            color: white;
+            margin-top: var(--header-height);
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 550px;
+            margin-left: 8%;
+            padding: 0 20px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero-content h2 {
+            font-size: clamp(2.2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 12px rgba(0,0,0,0.2);
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content p {
+            font-size: clamp(1rem, 1.6vw, 1.2rem);
+            line-height: 1.5;
+            margin-bottom: 32px;
+            opacity: 0.92;
+            max-width: 500px;
+        }
+
+        .btn-hero {
+            background: var(--white);
+            color: var(--primary-blue-dark);
+            border: none;
+            padding: 14px 36px;
+            font-size: 1.4rem;
+            font-weight: 700;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid var(--white);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-hero:hover {
+            background: transparent;
+            border-color: var(--white);
+            color: var(--white);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(0,0,0,0.2);
+        }
+
+        .hero-right-image {
+            position: absolute;
+            right: 4%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 540px;
+            max-width: 50vw;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 20px 35px rgba(0,0,0,0.25);
+            border: 2px solid rgba(255,255,255,0.5);
+            opacity: 0.95;
+            transition: all 0.3s;
+            z-index: 2;
+        }
+
+        .hero-right-image:hover {
+            transform: translateY(-50%) scale(1.02);
+            border-color: white;
+        }
+
+        /* === SOBRE === */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 20px;
+            color: #4a5568;
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .about-text strong {
+            color: var(--primary-blue);
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 28px;
+            box-shadow: 0 15px 35px rgba(25, 118, 210, 0.12);
+            border: 4px solid var(--primary-blue-light);
+            object-fit: cover;
+            height: auto;
+        }
+
+        /* === CTAs com fundo azul escuro === */
+        .cta-block {
+            max-width: 1000px;
+            margin: 48px auto;
+            background: var(--primary-blue-dark);
+            border-radius: 36px;
+            padding: 40px 36px;
+            text-align: center;
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: transform 0.25s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-block:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 28px 40px -15px rgba(0, 0, 0, 0.3);
+        }
+
+        .cta-block h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+
+        .cta-block p {
+            font-size: 1.05rem;
+            color: rgba(255, 255, 255, 0.9);
+            max-width: 650px;
+            margin: 0 auto 28px;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--highlight-color);
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 14px 32px;
+            border-radius: 50px;
+            text-decoration: none;
+            transition: all 0.3s;
+            border: none;
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-button i {
+            font-size: 1.1rem;
+            color: var(--white);
+        }
+
+        .cta-button:hover {
+            background: var(--highlight-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 22px rgba(0, 0, 0, 0.3);
+        }
+
+        /* === CONTATO === */
+        .contact-section {
+            background: var(--primary-blue-dark);
+            color: white;
+        }
+
+        .contact-section .section-title {
+            color: white;
+        }
+
+        .contact-section .section-title span {
+            color: var(--primary-blue-light);
+        }
+
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .contact-info-left, .contact-info-right {
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            border-radius: 32px;
+            padding: 32px 28px;
+            border: 1px solid rgba(255,255,255,0.15);
+            transition: transform 0.2s;
+        }
+
+        .contact-info-left:hover, .contact-info-right:hover {
+            transform: translateY(-4px);
+            background: rgba(255,255,255,0.12);
+        }
+
+        .contact-group {
+            margin-bottom: 32px;
+        }
+
+        .contact-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-group h4 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--primary-blue-light);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            border-bottom: 2px solid rgba(255,255,255,0.2);
+            padding-bottom: 8px;
+        }
+
+        .contact-group h4 i {
+            font-size: 1.5rem;
+        }
+
+        .contact-item-simple {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 16px;
+            font-size: 1rem;
+            line-height: 1.4;
+        }
+
+        .contact-item-simple i {
+            width: 28px;
+            font-size: 1.2rem;
+            color: var(--primary-blue-light);
+            text-align: center;
+        }
+
+        .contact-item-simple a, .contact-item-simple span {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .contact-item-simple a:hover {
+            color: var(--primary-blue-light);
+        }
+
+        .map-container {
+            border-radius: 32px;
+            overflow: hidden;
+            height: 320px;
+            border: 3px solid var(--primary-blue-light);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* DEMAIS SEÇÕES */
+        section:not(.contact-section) {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(1.8rem, 6vw, 2.5rem);
+            margin-bottom: 50px;
+            color: #1e2a3a;
+            position: relative;
+            font-weight: 700;
+        }
+
+        .section-title span {
+            color: var(--primary-blue);
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 70px;
+            height: 3px;
+            background: var(--primary-blue);
+            border-radius: 2px;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        .product-card {
+            background: var(--white);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: 0 15px 35px rgba(25, 118, 210, 0.08);
+            transition: all 0.35s ease;
+            border: 1px solid var(--gray-soft);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        .product-card:hover { transform: translateY(-8px); border-color: var(--primary-blue); }
+        .product-icon { background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark)); color: white; font-size: 3rem; padding: 35px 0; text-align: center; }
+        .product-info { padding: 25px 20px; background: var(--white); flex: 1; }
+        .product-info h3 { color: var(--primary-blue-dark); margin-bottom: 12px; font-size: 1.4rem; }
+        .product-info p { color: #4a5568; line-height: 1.6; font-size: 0.95rem; }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 35px;
+            margin-top: 20px;
+        }
+        .testimonial-card {
+            background: var(--gray-soft);
+            border-radius: 28px;
+            padding: 30px 25px;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(25, 118, 210, 0.15);
+        }
+        .testimonial-card:hover { transform: translateY(-5px); border-color: var(--primary-blue-light); }
+        .stars { color: var(--highlight-color); font-size: 1.3rem; margin-bottom: 18px; }
+        .testimonial-text { font-size: 1rem; line-height: 1.6; color: #1e2a3a; margin-bottom: 25px; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; border-top: 1px solid rgba(25, 118, 210, 0.2); padding-top: 18px; }
+        .author-avatar { width: 48px; height: 48px; background: var(--primary-blue); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: bold; }
+        .author-info h4 { font-size: 1rem; font-weight: 700; color: var(--primary-blue-dark); }
+        .google-review-container { text-align: center; margin-top: 50px; margin-bottom: 20px; }
+        .btn-google-review { display: inline-flex; align-items: center; gap: 12px; background: linear-gradient(135deg, #4285F4, #34A853); color: white; font-size: 1.1rem; font-weight: 700; padding: 16px 32px; border-radius: 60px; text-decoration: none; transition: all 0.3s; }
+        .btn-google-review:hover { transform: translateY(-4px); }
+        .clients { background: var(--gray-soft); }
+        .single-photo-container { max-width: 800px; margin: 0 auto; border-radius: 32px; overflow: hidden; box-shadow: 0 25px 45px rgba(0, 0, 0, 0.15); background: var(--white); border: 2px solid var(--primary-blue-light); }
+        .photo-caption { text-align: center; padding: 18px 20px; background: var(--white); color: var(--primary-blue-dark); font-weight: 600; border-top: 1px solid rgba(25, 118, 210, 0.2); }
+        .faq-card { max-width: 900px; margin: 0 auto; background: var(--white); border-radius: 32px; box-shadow: 0 20px 35px rgba(0, 0, 0, 0.05); border: 1px solid rgba(25, 118, 210, 0.15); overflow: hidden; }
+        .faq-item { border-bottom: 1px solid rgba(25, 118, 210, 0.1); }
+        .faq-question { display: flex; justify-content: space-between; align-items: center; padding: 20px 28px; cursor: pointer; background: var(--white); }
+        .faq-question h3 { font-size: 1.1rem; font-weight: 600; color: var(--primary-blue-dark); }
+        .faq-question i { font-size: 1.2rem; color: var(--primary-blue); transition: transform 0.3s; }
+        .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease; background: #fdfdfd; padding: 0 28px; color: #4a5568; line-height: 1.6; }
+        .faq-item.active .faq-answer { max-height: 250px; padding: 0 28px 20px 28px; }
+        .faq-item.active .faq-question i { transform: rotate(180deg); }
+        footer { background: #0a1a2a; color: rgba(255,255,255,0.7); text-align: center; padding: 35px 20px; border-top: 4px solid var(--primary-blue); }
+        .whatsapp-float { position: fixed; bottom: 25px; right: 20px; background: var(--whatsapp-green); color: white; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; font-size: 32px; box-shadow: 0 6px 20px rgba(37, 211, 102, 0.45); z-index: 99; transition: all 0.3s; border: 2px solid white; }
+        .whatsapp-float:hover { transform: scale(1.1); background: #20b859; }
+
+        /* ========== RESPONSIVIDADE CORRIGIDA (MOBILE) ========== */
+        @media (max-width: 768px) {
+            :root { --header-height: 70px; }
+
+            .header-content {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 10px 16px;
+                flex-wrap: nowrap;
+            }
+
+            .logo {
+                flex: 1;
+                padding-right: 10px;
+            }
+
+            .logo h1 {
+                font-size: 1.4rem;
+                line-height: 1.2;
+            }
+
+            .logo span {
+                font-size: 0.55rem;
+                letter-spacing: 1px;
+                white-space: nowrap;
+            }
+
+            .menu-toggle {
+                display: flex;
+                position: relative;
+                z-index: 1001;
+            }
+
+            nav {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                z-index: 1000;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                border-radius: 0;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 18px;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(12px);
+                border-top: 2px solid var(--primary-blue);
+                border-radius: 0 0 28px 28px;
+                box-shadow: 0 20px 30px rgba(0, 0, 0, 0.1);
+                padding: 20px 0;
+                margin: 0;
+                transform: translateY(-120%);
+                opacity: 0;
+                visibility: hidden;
+                transition: all 0.35s ease-in-out;
+                width: 100%;
+            }
+
+            nav ul.show-menu {
+                transform: translateY(0);
+                opacity: 1;
+                visibility: visible;
+            }
+
+            nav ul li {
+                width: 100%;
+                text-align: center;
+            }
+
+            nav a {
+                display: block;
+                padding: 8px 0;
+                font-size: 1rem;
+                white-space: normal;
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            /* Ajustes no hero para mobile - imagem removida */
+            .hero {
+                height: auto;
+                min-height: 500px;
+                padding: 60px 0;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+            }
+            .hero-content {
+                margin-left: 0;
+                text-align: center;
+                max-width: 90%;
+            }
+            .hero-content p {
+                margin-left: auto;
+                margin-right: auto;
+            }
+            /* Remove a imagem flutuante no mobile */
+            .hero-right-image {
+                display: none;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .about-image {
+                order: 1;
+                max-width: 80%;
+                margin: 0 auto;
+            }
+            .about-text {
+                order: 2;
+            }
+
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            }
+
+            .cta-block {
+                padding: 28px 20px;
+                margin: 32px auto;
+            }
+            .cta-block h3 {
+                font-size: 1.4rem;
+            }
+            .cta-block p {
+                font-size: 0.95rem;
+            }
+            .cta-button {
+                padding: 12px 24px;
+                font-size: 0.9rem;
+            }
+
+            .contact-wrapper {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .contact-info-left, .contact-info-right {
+                padding: 24px 20px;
+            }
+            .contact-group h4 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <a href="https://wa.me/5522988260293?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20informações%20sobre%20tendas." class="whatsapp-float" target="_blank" rel="noopener noreferrer">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <a href="#home">
+                    <h1>TENDAS REAL</h1>
+                    <span>HÁ 30 ANOS CRIANDO EVENTOS</span>
+                </a>
+            </div>
+            <button class="menu-toggle" id="menuToggle" aria-label="Menu de navegação">
+                <i class="fas fa-bars"></i>
+            </button>
+            <nav id="mainNav">
+                <ul id="navList">
+                    <li><a href="#sobre" class="nav-link">SOBRE</a></li>
+                    <li><a href="#produtos" class="nav-link">PRODUTOS</a></li>
+                    <li><a href="#avaliacoes" class="nav-link">AVALIAÇÕES</a></li>
+                    <li><a href="#clientes" class="nav-link">CLIENTES</a></li>
+                    <li><a href="#faq" class="nav-link">FAQ</a></li>
+                    <li><a href="#contato" class="nav-link">CONTATO</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h2>ESTRUTURAS QUE<br>TRANSFORMAM EVENTOS</h2>
+            <p>Proteção contra sol e chuva, climatização, palcos e todo o suporte para seu evento ser inesquecível, seguro e confortável.</p>
+            <a href="https://wa.me/5522988260293?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20informações%20sobre%20tendas." class="btn-hero" target="_blank" rel="noopener noreferrer">SOLICITAR ORÇAMENTO <i class="fab fa-whatsapp"></i></a>
+        </div>
+        <img src="/imagens/tendas_eventos_campos_dos_goytacazes.jpg" alt="Estrutura Tendas Real" class="hero-right-image">
+    </section>
+
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title">SUA <span>EXPERIÊNCIA</span> COMEÇA AQUI</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <p><strong>Não deixe o clima decidir por você.</strong> Uma estrutura adequada transforma qualquer espaço: protege seus convidados, valoriza o evento e dá liberdade para você focar no que importa.</p>
+                    <p>Com mais de três décadas de experiência, resolvemos os problemas mais comuns: <strong>calor excessivo, chuva inesperada, falta de conforto e logística descomplicada</strong>. Nossas soluções entregam segurança, elegância e bem-estar do início ao fim.</p>
+                    <p>O resultado? <strong>Eventos mais fluídos, clientes tranquilos e memórias que ficam.</strong> Você não aluga apenas uma tenda — você adquire confiança e a certeza de um ambiente perfeito, independente do tempo.</p>
+                </div>
+                <div class="about-image">
+                    <img src="/imagens/tendas_eventos_campos_dos_goytacazes.jpg" alt="Evento coberto por estrutura Tendas Real" loading="lazy">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 1 -->
+    <div class="container">
+        <div class="cta-block">
+            <h3>Vai Fazer um Evento e Está Com Medo da Chuva ou do Sol Forte?</h3>
+            <p>Garanta uma estrutura segura, elegante e pronta para proteger seus convidados do início ao fim.</p>
+            <a href="#contato" class="cta-button"><i class="fas fa-calendar-check"></i> Solicitar Orçamento</a>
+        </div>
+    </div>
+
+    <section id="produtos">
+        <div class="container">
+            <h2 class="section-title">NOSSOS <span>PRODUTOS</span></h2>
+            <div class="products-grid">
+                <div class="product-card"><div class="product-icon"><i class="fas fa-umbrella-beach"></i></div><div class="product-info"><h3>Tendas Moduladas</h3><p>Estruturas personalizadas para qualquer tipo de evento, com montagem rápida e acabamento impecável.</p></div></div>
+                <div class="product-card"><div class="product-icon"><i class="fas fa-toilet"></i></div><div class="product-info"><h3>Banheiros Químicos</h3><p>Higiene e conforto para seus eventos, com unidades limpas e bem conservadas.</p></div></div>
+                <div class="product-card"><div class="product-icon"><i class="fas fa-wind"></i></div><div class="product-info"><h3>Climatizadores</h3><p>Ambientes agradáveis mesmo nos dias mais quentes, com equipamentos potentes e silenciosos.</p></div></div>
+                <div class="product-card"><div class="product-icon"><i class="fas fa-couch"></i></div><div class="product-info"><h3>Móveis e Acessórios</h3><p>Mesas, cadeiras, tampões, pisos com carpete e tudo mais para seu evento.</p></div></div>
+                <div class="product-card"><div class="product-icon"><i class="fas fa-star"></i></div><div class="product-info"><h3>Palcos e Passarelas</h3><p>Estruturas seguras e bem acabadas para apresentações e desfiles.</p></div></div>
+                <div class="product-card"><div class="product-icon"><i class="fas fa-chair"></i></div><div class="product-info"><h3>Arquibancadas</h3><p>Soluções para público sentado com segurança e conforto.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="avaliacoes" class="testimonials">
+        <div class="container">
+            <h2 class="section-title">O QUE NOSSOS <span>CLIENTES DIZEM</span></h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="testimonial-text"><i class="fas fa-quote-left"></i> Contratei a Tendas Real para um evento corporativo de grande porte. Ficaram impressionados com a agilidade na montagem e a qualidade impecável das tendas. Atendimento nota 10!</div>
+                    <div class="testimonial-author"><div class="author-avatar"><i class="fas fa-user-tie"></i></div><div class="author-info"><h4>Ricardo Almeida</h4><p>Diretor de Eventos • TechExperience</p></div></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="testimonial-text"><i class="fas fa-quote-left"></i> Fizemos nosso casamento com toda a estrutura da Tendas Real. A decoração com as tendas moduladas, climatização e móveis combinou perfeitamente. Nossos convidados elogiaram o conforto.</div>
+                    <div class="testimonial-author"><div class="author-avatar"><i class="fas fa-heart"></i></div><div class="author-info"><h4>Camila e Lucas</h4><p>Casamento Realizado em 2024</p></div></div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+                    <div class="testimonial-text"><i class="fas fa-quote-left"></i> Precisávamos de palco, arquibancadas e banheiros químicos para uma feira municipal. A equipe da Tendas Real entregou antes do prazo e ainda deu todo suporte durante o evento.</div>
+                    <div class="testimonial-author"><div class="author-avatar"><i class="fas fa-city"></i></div><div class="author-info"><h4>Prefeitura de Campos</h4><p>Parceiro desde 2018</p></div></div>
+                </div>
+            </div>
+            <div class="google-review-container">
+                <a href="#" class="btn-google-review" target="_blank" rel="noopener noreferrer"><i class="fab fa-google"></i> Gostou do nosso serviço? Deixe sua avaliação no Google <i class="fas fa-star"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="clientes" class="clients">
+        <div class="container">
+            <h2 class="section-title">CLIENTES QUE <span>CONFIAM</span></h2>
+            <div class="single-photo-container">
+                <img src="/imagens/clientes_tendas_real_campos_dos_goytacazes.jpg" alt="Empresas e eventos realizados pela Tendas Real" loading="lazy">
+                <div class="photo-caption"><i class="fas fa-building"></i> Grandes empresas, casamentos, feiras e eventos que confiaram na Tendas Real — uma só imagem que representa nossa história e credibilidade.</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA 2 -->
+    <div class="container">
+        <div class="cta-block">
+            <h3>Tendas e Coberturas Para Eventos, Obras e Empresas</h3>
+            <p>Proteção, organização e mais conforto para seu público, equipe ou operação.</p>
+            <a href="#contato" class="cta-button"><i class="fas fa-hand-holding-usd"></i> Solicite Seu Orçamento</a>
+        </div>
+    </div>
+
+    <section id="faq" class="faq-section">
+        <div class="container">
+            <h2 class="section-title">PERGUNTAS <span>FREQUENTES</span></h2>
+            <div class="faq-card">
+                <div class="faq-item"><div class="faq-question"><h3>📌 Quais tipos de tendas vocês oferecem para aluguel?</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Trabalhamos com tendas moduladas (piramidais, tencionadas, transparentes, fundo preto), além de estruturas para palcos, passarelas e arquibancadas.</p></div></div>
+                <div class="faq-item"><div class="faq-question"><h3>📍 Vocês atendem apenas em Campos dos Goytacazes?</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Atendemos Campos, São João da Barra (Porto do Açu) e toda a região Norte Fluminense.</p></div></div>
+                <div class="faq-item"><div class="faq-question"><h3>💰 Como faço para solicitar um orçamento?</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Clique no botão "Solicitar Orçamento" ou vá até a seção de contato. Respondemos rapidamente por telefone, e-mail ou WhatsApp.</p></div></div>
+                <div class="faq-item"><div class="faq-question"><h3>🧹 Vocês fornecem limpeza e manutenção dos banheiros químicos?</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Sim! Nossos banheiros químicos são entregues higienizados e temos serviço de manutenção durante eventos longos.</p></div></div>
+                <div class="faq-item"><div class="faq-question"><h3>⏱️ Qual a antecedência ideal para reservar a estrutura?</h3><i class="fas fa-chevron-down"></i></div><div class="faq-answer"><p>Recomendamos 15 a 30 dias. Consulte-nos para demandas de última hora.</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">FALE <span>CONOSCO</span></h2>
+            <div class="contact-wrapper">
+                <div class="contact-info-left">
+                    <div class="contact-group">
+                        <h4><i class="fas fa-phone-alt"></i> Telefones</h4>
+                        <div class="contact-item-simple"><i class="fas fa-phone"></i><a href="tel:+552227322765">(22) 2732-2765</a></div>
+                        <div class="contact-item-simple"><i class="fas fa-phone"></i><a href="tel:+552227322832">(22) 2732-2832</a></div>
+                        <div class="contact-item-simple"><i class="fas fa-phone"></i><a href="tel:+552230560122">(22) 3056-0122</a></div>
+                    </div>
+                    <div class="contact-group">
+                        <h4><i class="fab fa-whatsapp"></i> WhatsApp / Celular</h4>
+                        <div class="contact-item-simple"><i class="fas fa-mobile-alt"></i><a href="tel:+552230151717">(22) 3015-1717</a></div>
+                        <div class="contact-item-simple"><i class="fab fa-whatsapp"></i><a href="https://wa.me/5522988260293?text=Olá!%20Vim%20pelo%20site%20e%20gostaria%20de%20informações" target="_blank">(22) 98826-0293 (OI)</a></div>
+                    </div>
+                </div>
+
+                <div class="contact-info-right">
+                    <div class="contact-group">
+                        <h4><i class="fas fa-envelope"></i> E-mails</h4>
+                        <div class="contact-item-simple"><i class="fas fa-envelope"></i><a href="mailto:tendasreal@tendasreal.com.br">tendasreal@tendasreal.com.br</a></div>
+                        <div class="contact-item-simple"><i class="fas fa-envelope"></i><a href="mailto:toldosreal@tendasreal.com.br">toldosreal@tendasreal.com.br</a></div>
+                    </div>
+                    <div class="contact-group">
+                        <h4><i class="fas fa-clock"></i> Horário de Atendimento</h4>
+                        <div class="contact-item-simple"><i class="fas fa-calendar-day"></i><span>Segunda a Sexta: 8h às 18h</span></div>
+                        <div class="contact-item-simple"><i class="fas fa-calendar-weekend"></i><span>Sábado: 8h às 12h</span></div>
+                    </div>
+                    <div class="contact-group">
+                        <h4><i class="fas fa-map-pin"></i> Endereço</h4>
+                        <div class="contact-item-simple"><i class="fas fa-location-dot"></i><span>R. Santa Tereza, nº 205 - Cajú<br>Campos dos Goytacazes - RJ</span></div>
+                    </div>
+                </div>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3761.380333466549!2d-41.33167778465488!3d-21.76215208557685!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xbdd6c9ecc3e6807%3A0x9f2e6963b4454b6!2sR.%20Santa%20Tereza%2C%20205%20-%20Caj%C3%BA%2C%20Campos%20dos%20Goytacazes%20-%20RJ%2C%2028060-110!5e0!3m2!1spt-BR!2sbr!4v1710850000000!5m2!1spt-BR!2sbr" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>TENDAS REAL © 2025 - TODOS OS DIREITOS RESERVADOS</p>
+            <p style="margin-top: 12px; font-size: 0.9rem;">R. Santa Tereza, 205 - Cajú, Campos dos Goytacazes - RJ</p>
+        </div>
+    </footer>
+
+    <script>
+        (function() {
+            const menuToggle = document.getElementById('menuToggle');
+            const navList = document.getElementById('navList');
+            const navLinks = document.querySelectorAll('.nav-link');
+            function closeMenu() { if (navList && navList.classList.contains('show-menu')) { navList.classList.remove('show-menu'); if(menuToggle){ const icon = menuToggle.querySelector('i'); if(icon) icon.classList.remove('fa-times'); if(icon) icon.classList.add('fa-bars'); } } }
+            function toggleMenu() { if (navList.classList.contains('show-menu')) { closeMenu(); } else { navList.classList.add('show-menu'); const icon = menuToggle.querySelector('i'); if(icon) { icon.classList.remove('fa-bars'); icon.classList.add('fa-times'); } } }
+            if (menuToggle && navList) { menuToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); }); }
+            navLinks.forEach(link => { link.addEventListener('click', () => closeMenu()); });
+            document.addEventListener('click', function(event) { if (navList && navList.classList.contains('show-menu')) { const isClickInsideNav = navList.contains(event.target); const isClickOnToggle = menuToggle && menuToggle.contains(event.target); if (!isClickInsideNav && !isClickOnToggle) closeMenu(); } });
+            window.addEventListener('resize', function() { if (window.innerWidth > 768 && navList && navList.classList.contains('show-menu')) closeMenu(); });
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => { anchor.addEventListener('click', function(e) { const targetId = this.getAttribute('href'); if (targetId === "#" || targetId === "") return; const targetElement = document.querySelector(targetId); if (targetElement) { e.preventDefault(); const headerOffset = 80; const elementPosition = targetElement.getBoundingClientRect().top; const offsetPosition = elementPosition + window.pageYOffset - headerOffset; window.scrollTo({ top: offsetPosition, behavior: "smooth" }); closeMenu(); } }); });
+            const faqItems = document.querySelectorAll('.faq-item');
+            faqItems.forEach(item => { const question = item.querySelector('.faq-question'); question.addEventListener('click', () => { const isActive = item.classList.contains('active'); faqItems.forEach(other => other.classList.remove('active')); if (!isActive) item.classList.add('active'); }); });
+        })();
+    </script>
+</body>
+</html>
